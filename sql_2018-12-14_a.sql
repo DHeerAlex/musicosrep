@@ -47,6 +47,7 @@ CREATE TABLE acteur(
         act_pre        Varchar (50) NOT NULL ,
         act_tel        Varchar (10) NOT NULL ,
         act_mai        Varchar (50) NOT NULL ,
+	act_pas        Varchar (10) NOT NULL ,
         act_pho        Varchar (50) NOT NULL ,
         act_grp        Varchar (10) NOT NULL ,
         act_ok         boolean NOT NULL ,
