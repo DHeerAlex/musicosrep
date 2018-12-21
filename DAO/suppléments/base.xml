@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!DOCTYPE daogen-metadata>
+
+<daogen-metadata>
+   <tableName>acteur</tableName>
+   <columns>
+      <dbColumn PK="true" colType="String" colName="act_log" varName="act_log" automatic="false" valueSource="" indexed="true" colLength="255" orderLevel="1" orderType="ASC" />
+      <dbColumn PK="false" colType="String" colName="act_nom" varName="act_nom" automatic="false" valueSource="" indexed="false" colLength="255" orderLevel="0" orderType="ASC" />
+      <dbColumn PK="false" colType="String" colName="act_pre" varName="act_pre" automatic="false" valueSource="" indexed="false" colLength="255" orderLevel="0" orderType="ASC" />
+      <dbColumn PK="false" colType="String" colName="act_tel" varName="act_tel" automatic="false" valueSource="" indexed="false" colLength="255" orderLevel="0" orderType="ASC" />
+      <dbColumn PK="false" colType="String" colName="act_mai" varName="act_mai" automatic="false" valueSource="" indexed="false" colLength="255" orderLevel="0" orderType="ASC" />
+      <dbColumn PK="false" colType="String" colName="act_pho" varName="act_pho" automatic="false" valueSource="" indexed="false" colLength="255" orderLevel="0" orderType="ASC" />
+      <dbColumn PK="false" colType="String" colName="act_grp" varName="act_grp" automatic="false" valueSource="" indexed="false" colLength="255" orderLevel="0" orderType="ASC" />
+      <dbColumn PK="false" colType="Int" colName="act_ok" varName="act_ok" automatic="false" valueSource="" indexed="false" colLength="10" orderLevel="0" orderType="ASC" />
+      <dbColumn PK="false" colType="String" colName="loc_ins" varName="loc_ins" automatic="false" valueSource="" indexed="false" colLength="255" orderLevel="0" orderType="ASC" />
+      <dbColumn PK="false" colType="Int" colName="typ_id" varName="typ_id" automatic="false" valueSource="" indexed="false" colLength="10" orderLevel="0" orderType="ASC" />
+      <dbColumn PK="false" colType="String" colName="act_log_acteur" varName="act_log_acteur" automatic="false" valueSource="" indexed="false" colLength="255" orderLevel="0" orderType="ASC" />
+   </columns>
+
+   <tableName>typeacteur</tableName>
+   <columns>
+      <dbColumn PK="true" colType="Int" colName="typ_id" varName="typ_id" automatic="false" valueSource="" indexed="true" colLength="10" orderLevel="1" orderType="ASC" />
+      <dbColumn PK="false" colType="String" colName="typ_lib" varName="typ_lib" automatic="false" valueSource="" indexed="false" colLength="255" orderLevel="0" orderType="ASC" />
+   </columns>
+
+   <tableName>localite</tableName>
+   <columns>
+      <dbColumn PK="true" colType="String" colName="loc_ins" varName="loc_ins" automatic="false" valueSource="" indexed="true" colLength="255" orderLevel="1" orderType="ASC" />
+      <dbColumn PK="false" colType="String" colName="loc_cp" varName="loc_cp" automatic="false" valueSource="" indexed="false" colLength="255" orderLevel="0" orderType="ASC" />
+      <dbColumn PK="false" colType="String" colName="loc_lib" varName="loc_lib" automatic="false" valueSource="" indexed="false" colLength="255" orderLevel="0" orderType="ASC" />
+   </columns>
+
+   <tableName>propose</tableName>
+   <columns>
+      <dbColumn PK="true" colType="Int" colName="ser_id" varName="ser_id" automatic="false" valueSource="" indexed="true" colLength="10" orderLevel="1" orderType="ASC" />
+      <dbColumn PK="false" colType="String" colName="act_log" varName="act_log" automatic="false" valueSource="" indexed="false" colLength="255" orderLevel="0" orderType="ASC" />
+      <dbColumn PK="false" colType="BigDecimal" colName="pro_tar" varName="pro_tar" automatic="false" valueSource="" indexed="false" colLength="10" orderLevel="0" orderType="ASC" />
+      <dbColumn PK="false" colType="String" colName="pro_typ" varName="pro_typ" automatic="false" valueSource="" indexed="false" colLength="255" orderLevel="0" orderType="ASC" />
+   </columns>
+
+   <tableName>service</tableName>
+   <columns>
+      <dbColumn PK="true" colType="Int" colName="ser_id" varName="ser_id" automatic="false" valueSource="" indexed="true" colLength="10" orderLevel="1" orderType="ASC" />
+      <dbColumn PK="false" colType="String" colName="ser_lib" varName="ser_lib" automatic="false" valueSource="" indexed="false" colLength="255" orderLevel="0" orderType="ASC" />
+   </columns>
+
+   <tableName>mdp</tableName>
+   <columns>
+      <dbColumn PK="true" colType="String" colName="mdp_log" varName="mdp_log" automatic="false" valueSource="" indexed="true" colLength="255" orderLevel="1" orderType="ASC" />
+      <dbColumn PK="false" colType="String" colName="mdp_pw" varName="mdp_pw" automatic="false" valueSource="" indexed="false" colLength="255" orderLevel="0" orderType="ASC" />
+   </columns>
+   
+   <tableName>droits</tableName>
+   <columns>
+      <dbColumn PK="true" colType="String" colName="dro_log" varName="dro_log" automatic="false" valueSource="" indexed="true" colLength="255" orderLevel="1" orderType="ASC" />
+      <dbColumn PK="false" colType="String" colName="dro_app" varName="dro_app" automatic="false" valueSource="" indexed="false" colLength="255" orderLevel="0" orderType="ASC" />
+      <dbColumn PK="false" colType="String" colName="dro_aut" varName="dro_aut" automatic="false" valueSource="" indexed="false" colLength="255" orderLevel="0" orderType="ASC" />
+   </columns>
+</daogen-metadata>
+
+
+
+
+
+
+
+
