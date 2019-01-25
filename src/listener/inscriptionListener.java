@@ -43,6 +43,8 @@ public class inscriptionListener implements ActionListener {
 			String txt_ville = paramLoc.getLoc_lib();
 			String txt_type = paramType.getTyp_lib();
 			
+			System.out.println(txt_type);
+			
 			DB_Connection conn = new DB_Connection();
 			Connection laCo = conn.get_connection();
 			

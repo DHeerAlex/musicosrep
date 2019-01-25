@@ -22,7 +22,7 @@ public class DB_Connection
 	
 		try
 		{
-			url = "jdbc:mysql://localhost:3306/musicosrep";
+			url = "jdbc:mysql://localhost:3306/musicosrep2";
 			user = "root";
 			passwd = "";
 			Class.forName("com.mysql.jdbc.Driver");

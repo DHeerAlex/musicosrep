@@ -20,14 +20,14 @@ public class mdpDao {
 	private Connection conn = laCo.get_connection();
 	private PreparedStatement stmt = null;
 	
-	public void ajouter(mdp newS) {
+	public void ajouter(mdp newM) {
     	try {
             String sql = "INSERT INTO mdp ( mdp_log, mdp_pw) VALUES (?, ?) ";
             try {
 				stmt = conn.prepareStatement(sql);
            
-	            stmt.setString(1, newS.getmdp_log()); 
-	            stmt.setString(2, newS.getmdp_pw());
+	            stmt.setString(1, newM.getmdp_log()); 
+	            stmt.setString(2, newM.getmdp_pw());
 	
 	            int rowcount = stmt.executeUpdate();
 	            if (rowcount != 1) {
@@ -44,14 +44,14 @@ public class mdpDao {
 		}
     }
 	
-	public void modifier(mdp oldS) {
+	public void modifier(mdp oldM) {
     	try {
             String sql = "UPDATE mdp SET mdp_pw = ? WHERE (mdp_log = ? ) ";
             try {
 				stmt = conn.prepareStatement(sql);
            
-				stmt.setString(1, oldS.getmdp_pw()); 
-	            stmt.setString(2, oldS.getmdp_log());
+				stmt.setString(1, oldM.getmdp_pw()); 
+	            stmt.setString(2, oldM.getmdp_log());
 	            
 	            int rowcount = stmt.executeUpdate();
 	            if (rowcount != 1) {
@@ -69,13 +69,13 @@ public class mdpDao {
     	
     }
 	
-	public void supprimer(mdp oldS) {
+	public void supprimer(mdp oldM) {
     	try {
             String sql = "DELETE FROM mdp WHERE (mdp_log = ? ) ";
             try {
 				stmt = conn.prepareStatement(sql);
            
-				stmt.setString(1, oldS.getmdp_log());
+				stmt.setString(1, oldM.getmdp_log());
 	
 	            int rowcount = stmt.executeUpdate();
 	            if (rowcount != 1) {
@@ -92,7 +92,7 @@ public class mdpDao {
 		}
     }
 	
-    public List<mdp> listemdps() {
+    public List<mdp> listeMdps() {
     	List<mdp> newListe = new ArrayList();
     	String sql = "SELECT * FROM mdp";
     	try {

@@ -1,33 +1,30 @@
 package Dao_d;
 
 
-
 import java.sql.*;
 import java.util.*;
+
 import db.*;
-import modele.typeacteur;
+import modele.droits;
 
 import java.math.*;
 
+public class droitsDao {
 
-
-
-public class typeacteurDao {
-	
 	private DB_Connection laCo = new DB_Connection();
 	private Connection conn = laCo.get_connection();
 	private PreparedStatement stmt = null;
 
-	public void ajouter(typeacteur newT) {
+	public void ajouter(droits newD) {
     	try {
-            String sql = "INSERT INTO typeacteur ( typ_id, typ_lib) "
-            + " VALUES (?, ?) ";
+            String sql = "INSERT INTO droits ( dro_log, dro_app,dro_aut) VALUES (?, ?, ?) ";
             try {
 				stmt = conn.prepareStatement(sql);
            
-	            stmt.setInt(1, newT.getTyp_id()); 
-	            stmt.setString(2, newT.getTyp_lib());
-	
+	            stmt.setString(1, newD.getDro_log() ); 
+	            stmt.setString(2, newD.getDro_app() );
+	            stmt.setString(3, newD.getDro_aut() );
+	            
 	            int rowcount = stmt.executeUpdate();
 	            if (rowcount != 1) {
 	                 //System.out.println("PrimaryKey Error when updating DB!");
@@ -42,18 +39,17 @@ public class typeacteurDao {
 			e.printStackTrace();
 		}
     }
-
-    public void modifier(typeacteur oldT) {
+	
+	public void modifier(droits oldD) {
     	try {
-            String sql = "UPDATE typeacteur SET typ_lib = ?"
-            + " WHERE typ_id = ?";
+            String sql = "UPDATE droits SET dro_aut = ? WHERE (dro_log = ? and dro_app = ?) ";
             try {
 				stmt = conn.prepareStatement(sql);
            
-				stmt.setInt(1, oldT.getTyp_id());
-	            stmt.setString(2, oldT.getTyp_lib()); 
+				stmt.setString(2, oldD.getDro_log() ); 
+	            stmt.setString(3, oldD.getDro_app() );
+	            stmt.setString(1, oldD.getDro_aut() );
 	            
-	
 	            int rowcount = stmt.executeUpdate();
 	            if (rowcount != 1) {
 	                 //System.out.println("PrimaryKey Error when updating DB!");
@@ -69,14 +65,15 @@ public class typeacteurDao {
 		}
     	
     }
-    
-    public void supprimer(typeacteur oldT) {
+	
+	public void supprimer(droits oldD) {
     	try {
-            String sql = "DELETE FROM typeacteur WHERE typ_id = ?";
+            String sql = "DELETE FROM droits WHERE (dro_log = ? and dro_app = ?) ";
             try {
 				stmt = conn.prepareStatement(sql);
            
-	            stmt.setInt(1, oldT.getTyp_id());
+				stmt.setString(1, oldD.getDro_log() ); 
+	            stmt.setString(2, oldD.getDro_app() );
 	
 	            int rowcount = stmt.executeUpdate();
 	            if (rowcount != 1) {
@@ -92,16 +89,16 @@ public class typeacteurDao {
 			e.printStackTrace();
 		}
     }
-    
-    public List<typeacteur> listeTypes() {
-    	List<typeacteur> newListe = new ArrayList();
-    	String sql = "SELECT * FROM typeacteur";
+	
+    public List<droits> listeDroits() {
+    	List<droits> newListe = new ArrayList();
+    	String sql = "SELECT * FROM droits";
     	try {
     		Statement stm = conn.createStatement();
 			ResultSet res = stm.executeQuery(sql);
     	    while(res.next()) {
-    	    	typeacteur retourne = new typeacteur();
-    	    	  retourne.setAll(res.getInt(1), res.getString(2));
+    	    	droits retourne = new droits();
+    	    	  retourne.setAll(res.getString(1), res.getString(2), res.getString(3));
     	    	  newListe.add(retourne);
     	      }
     		}catch(Exception e) {
@@ -109,42 +106,26 @@ public class typeacteurDao {
     		}
     	return newListe;
     }
-    
-    public typeacteur retourne(int id) {
-    	typeacteur retourne = new typeacteur();
+	
+	public droits retourne(String log) {
+    	droits retourne = new droits();
     	try {
-        	stmt = conn.prepareStatement("SELECT * FROM typeacteur WHERE typ_id = ?"); 
-        	stmt.setInt(1,id); 
+        	stmt = conn.prepareStatement("SELECT * FROM droits WHERE mdp_log = ?"); 
+        	stmt.setString(1,log); 
     	      
     	      ResultSet res = stmt.executeQuery();
     	      while(res.next()) {
-    	    	  retourne.setAll(res.getInt(1), res.getString(2));
+    	    	  retourne.setAll(res.getString(1), res.getString(2), res.getString(3));
     	      }
     		}catch(Exception e) {
     			System.out.println(e.getMessage());
     		}
     	return retourne;
     }
-    
-    public typeacteur retourne(String libelle) {
-    	typeacteur retourne = new typeacteur();
-    	try {
-        	stmt = conn.prepareStatement("SELECT * FROM typeacteur WHERE typ_lib = ?"); 
-        	stmt.setString(1,libelle); 
-    	      
-    	      ResultSet res = stmt.executeQuery();
-    	      while(res.next()) {
-    	    	  retourne.setAll(res.getInt(1), res.getString(2));
-    	      }
-    		}catch(Exception e) {
-    			System.out.println(e.getMessage());
-    		}
-    	return retourne;
-    }
-    
-    public int nbTypes() {
+	
+	public int nbLiensDroits() {
     	int nb = -1;
-    	String sql = "SELECT count(*) AS nbTypes FROM typeacteur";
+    	String sql = "SELECT count(*) AS nbMdps FROM droits";
     	
     	try {
         	Statement stm = conn.createStatement();
@@ -152,7 +133,7 @@ public class typeacteurDao {
 			  
 			  
 			if(res.next()) {
-				nb = res.getInt("nbTypes");
+				nb = res.getInt("nbMdps");
 			}
 		} catch(Exception e) {
 			System.out.println(e.getMessage());
@@ -160,13 +141,14 @@ public class typeacteurDao {
     	
     	return nb;
     }
-    
-    public boolean existe(typeacteur T) {
+
+	public boolean existe(droits M) {
     	boolean exists = false;
     	
 		try {
-			stmt = conn.prepareStatement("SELECT * FROM typeacteur WHERE typ_id = ?"); 
-			stmt.setInt(1, T.getTyp_id());
+			stmt = conn.prepareStatement("SELECT * FROM droits WHERE dro_log = ? and dro_app = ?"); 
+			stmt.setString(1, M.getDro_log());
+			stmt.setString(2, M.getDro_app());
 	      
 	      ResultSet res = stmt.executeQuery();
 	      if(res.next()) {
@@ -182,3 +164,4 @@ public class typeacteurDao {
 
 
 }
+

@@ -22,7 +22,6 @@ public class acteur implements Cloneable, Serializable {
     private int act_ok;
     private String loc_ins;
     private int typ_id;
-    private String act_log_acteur;
 
     public acteur () {
 
@@ -105,13 +104,6 @@ public class acteur implements Cloneable, Serializable {
           this.typ_id = typ_idIn;
     }
 
-    public String getAct_log_acteur() {
-          return this.act_log_acteur;
-    }
-    public void setAct_log_acteur(String act_log_acteurIn) {
-          this.act_log_acteur = act_log_acteurIn;
-    }
-
 
     public void setAll(String act_logIn,
           String act_nomIn,
@@ -122,8 +114,7 @@ public class acteur implements Cloneable, Serializable {
           String act_grpIn,
           int act_okIn,
           String loc_insIn,
-          int typ_idIn,
-          String act_log_acteurIn) {
+          int typ_idIn) {
           this.act_log = act_logIn;
           this.act_nom = act_nomIn;
           this.act_pre = act_preIn;
@@ -134,7 +125,6 @@ public class acteur implements Cloneable, Serializable {
           this.act_ok = act_okIn;
           this.loc_ins = loc_insIn;
           this.typ_id = typ_idIn;
-          this.act_log_acteur = act_log_acteurIn;
     }
 
     public boolean hasEqualMapping(acteur valueObject) {
@@ -193,12 +183,6 @@ public class acteur implements Cloneable, Serializable {
           if (valueObject.getTyp_id() != this.typ_id) {
                     return(false);
           }
-          if (this.act_log_acteur == null) {
-                    if (valueObject.getAct_log_acteur() != null)
-                           return(false);
-          } else if (!this.act_log_acteur.equals(valueObject.getAct_log_acteur())) {
-                    return(false);
-          }
 
           return true;
     }
@@ -217,7 +201,6 @@ public class acteur implements Cloneable, Serializable {
         out.append("act_ok = " + this.act_ok + "\n"); 
         out.append("loc_ins = " + this.loc_ins + "\n"); 
         out.append("typ_id = " + this.typ_id + "\n"); 
-        out.append("act_log_acteur = " + this.act_log_acteur + "\n"); 
         return out.toString();
     }
 
@@ -241,9 +224,7 @@ public class acteur implements Cloneable, Serializable {
         cloned.setAct_ok(this.act_ok); 
         if (this.loc_ins != null)
              cloned.setLoc_ins(new String(this.loc_ins)); 
-        cloned.setTyp_id(this.typ_id); 
-        if (this.act_log_acteur != null)
-             cloned.setAct_log_acteur(new String(this.act_log_acteur)); 
+        cloned.setTyp_id(this.typ_id);
         return cloned;
     }
 

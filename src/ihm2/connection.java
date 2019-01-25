@@ -1,9 +1,5 @@
-package ihm;
-
-
+package ihm2;
 import java.awt.EventQueue;
-import java.sql.*;
-import java.util.*;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -13,11 +9,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 import java.awt.Color;
 
-import listener.*;
-import modele.mdp;
-import DAO.*;
-
-public class connection extends JFrame{
+public class connection {
 
 	private JFrame frmConnection;
 	private JTextField login;
@@ -54,7 +46,7 @@ public class connection extends JFrame{
 		frmConnection = new JFrame();
 		frmConnection.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frmConnection.setTitle("connection");
-		frmConnection.setBounds(100, 100, 460, 313);
+		frmConnection.setBounds(100, 100, 346, 243);
 		frmConnection.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmConnection.getContentPane().setLayout(null);
 		
@@ -71,49 +63,29 @@ public class connection extends JFrame{
 		JButton btnConnection = new JButton("Connexion");
 		btnConnection.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try {
-					String txt_login = login.getText();
-					String txt_pass = mot_de_passe.getText();
-					String pass_hash = Base64.getEncoder().encodeToString(txt_pass.getBytes());
-					mdp param = new mdp();
-					param.setAll(txt_login, pass_hash);
-					
-					ActionEvent a = null;
-					connexionListener au = new connexionListener(param);
-
-					au.actionPerformed(a);	
-					frmConnection.setVisible(false);
-				}
-				catch (Exception ex) {
-					ex.printStackTrace();
-				}
 			}
 		});
-		btnConnection.setBounds(164, 106, 131, 23);
+		btnConnection.setBounds(164, 106, 89, 23);
 		frmConnection.getContentPane().add(btnConnection);
 		
-		btnInscription = new JButton("Inscription");
+		btnInscription = new JButton("inscription");
 		btnInscription.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmConnection.setVisible(false);
-				inscription frm_insc = new inscription();
 			}
 		});
-		btnInscription.setBounds(22, 106, 117, 23);
+		btnInscription.setBounds(22, 106, 89, 23);
 		frmConnection.getContentPane().add(btnInscription);
 		
 		JTextPane txtpnLogin = new JTextPane();
 		txtpnLogin.setBackground(Color.LIGHT_GRAY);
 		txtpnLogin.setText("Login");
-		txtpnLogin.setBounds(22, 44, 117, 20);
-		txtpnLogin.setEditable(false);
+		txtpnLogin.setBounds(22, 44, 70, 20);
 		frmConnection.getContentPane().add(txtpnLogin);
 		
 		JTextPane txtpnMotDePasse = new JTextPane();
 		txtpnMotDePasse.setBackground(Color.LIGHT_GRAY);
 		txtpnMotDePasse.setText("Mot de passe");
-		txtpnMotDePasse.setBounds(22, 75, 117, 20);
-		txtpnMotDePasse.setEditable(false);
+		txtpnMotDePasse.setBounds(22, 75, 70, 20);
 		frmConnection.getContentPane().add(txtpnMotDePasse);
 	}
 }

@@ -1,4 +1,4 @@
-package ihm;
+package ihm_d;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -43,7 +43,7 @@ public class inscription {
 	 * @wbp.parser.constructor
 	 */
 	public inscription() {
-		initialize();
+		init_insc();
 	}
 	/**
 	 * Create the application
@@ -51,14 +51,14 @@ public class inscription {
 	 */
 	public inscription(acteur A) {
 		paramActeur = A;
-		initialize2();
+		init_modif();
 		afficherInfos();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void init_insc() {
 		frmInscription = new JFrame();
 		frmInscription.setTitle("Inscription");
 		frmInscription.getContentPane().setBackground(Color.LIGHT_GRAY);
@@ -260,7 +260,7 @@ public class inscription {
 		frmInscription.setVisible(true);
 	}
 	
-	private void initialize2() {
+	private void init_modif() {
 		frmInscription = new JFrame();
 		frmInscription.setTitle("Modification");
 		frmInscription.getContentPane().setBackground(Color.LIGHT_GRAY);

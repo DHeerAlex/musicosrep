@@ -1,4 +1,4 @@
-package ihm;
+package ihm_d;
 
 
 import java.awt.EventQueue;
@@ -74,9 +74,11 @@ public class connection extends JFrame{
 				try {
 					String txt_login = login.getText();
 					String txt_pass = mot_de_passe.getText();
-					String pass_hash = Base64.getEncoder().encodeToString(txt_pass.getBytes());
+					//String pass_hash = Base64.getEncoder().encodeToString(txt_pass.getBytes());
 					mdp param = new mdp();
-					param.setAll(txt_login, pass_hash);
+					//param.setAll(txt_login, pass_hash);
+					
+					param.setAll(txt_login, txt_pass);
 					
 					ActionEvent a = null;
 					connexionListener au = new connexionListener(param);

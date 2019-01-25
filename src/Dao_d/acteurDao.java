@@ -25,7 +25,7 @@ public class acteurDao {
             String sql = "INSERT INTO acteur ( act_log, act_nom, act_pre, "
             + "act_tel, act_mai, act_pho, "
             + "act_grp, act_ok, loc_ins, "
-            + "typ_id, act_log_acteur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+            + "typ_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
             try {
 				stmt = conn.prepareStatement(sql);
            
@@ -39,7 +39,6 @@ public class acteurDao {
 	            stmt.setInt(8, newA.getAct_ok()); 
 	            stmt.setString(9, newA.getLoc_ins()); 
 	            stmt.setInt(10, newA.getTyp_id()); 
-	            stmt.setString(11, newA.getAct_log_acteur()); 
 	
 	            int rowcount = stmt.executeUpdate();
 	            if (rowcount != 1) {
@@ -61,11 +60,11 @@ public class acteurDao {
             String sql = "UPDATE acteur SET act_nom = ?, act_pre = ?, "
             + "act_tel = ?, act_mai = ?, act_pho = ?, "
             + "act_grp = ?, act_ok = ?, loc_ins = ?, "
-            + "typ_id = ?, act_log_acteur = ? WHERE act_log = ?";
+            + "typ_id = ? WHERE act_log = ?";
             try {
 				stmt = conn.prepareStatement(sql);
            
-	            stmt.setString(11, oldA.getAct_log()); 
+	            stmt.setString(10, oldA.getAct_log()); 
 	            stmt.setString(1, oldA.getAct_nom()); 
 	            stmt.setString(2, oldA.getAct_pre()); 
 	            stmt.setString(3, oldA.getAct_tel()); 
@@ -74,8 +73,7 @@ public class acteurDao {
 	            stmt.setString(6, oldA.getAct_grp()); 
 	            stmt.setInt(7, oldA.getAct_ok()); 
 	            stmt.setString(8, oldA.getLoc_ins()); 
-	            stmt.setInt(9, oldA.getTyp_id()); 
-	            stmt.setString(10, oldA.getAct_log_acteur()); 
+	            stmt.setInt(9, oldA.getTyp_id());
 	
 	            int rowcount = stmt.executeUpdate();
 	            if (rowcount != 1) {
@@ -134,8 +132,7 @@ public class acteurDao {
     	    			  res.getString(7),
     	    			  res.getInt(8),
     	    			  res.getString(9),
-    	    			  res.getInt(10),
-    	    			  res.getString(11));
+    	    			  res.getInt(10));
     	    	  newListe.add(retourne);
     	      }
     		}catch(Exception e) {
@@ -162,8 +159,7 @@ public class acteurDao {
     	    			  res.getString(7),
     	    			  res.getInt(8),
     	    			  res.getString(9),
-    	    			  res.getInt(10),
-    	    			  res.getString(11));
+    	    			  res.getInt(10));
     	      }
     		}catch(Exception e) {
     			System.out.println(e.getMessage());

@@ -5,6 +5,7 @@ import java.sql.*;
 import java.util.*;
 
 import db.*;
+import listener.keyboard;
 import modele.localite;
 
 import java.math.*;
@@ -134,9 +135,53 @@ public class localiteDao {
     	return retourne;
     }
     
-    public int nbActeurs() {
+    public List<localite> rechercheAuto(String k) {
+    	List<localite> newListe = new ArrayList();
+    	try {
+    		switch(k.length()) {
+    		case 1:
+    		
+    		break;
+    		case 2:
+        		
+        		break;
+    		case 3:
+        		
+        		break;
+    		case 4:
+        		
+        		break;
+    		case 5:
+        		
+        		break;
+    		
+    		}
+    		
+    		
+    		/*
+        	stmt = conn.prepareStatement("SELECT * FROM localite WHERE loc_cp Like \"?%\""); 
+        	stmt.setString(1,k);
+        	System.out.println(stmt);
+    	      ResultSet res = stmt.executeQuery();
+    	      while(res.next()) {
+    	    	  localite retourne = new localite();
+    	    	  retourne.setAll(
+    	    			  res.getString(1),
+    	    			  res.getString(2),
+    	    			  res.getString(3)
+    	    			  );
+    	    	  newListe.add(retourne);
+    	      }
+    	      */
+    		}catch(Exception e) {
+    			System.out.println(e.getMessage());
+    		}
+    	return newListe;
+    }
+    
+    public int nbLocalites() {
     	int nb = -1;
-    	String sql = "SELECT count(*) AS nbActeurs FROM localite";
+    	String sql = "SELECT count(*) AS nbLocalites FROM localite";
     	
     	try {
         	Statement stm = conn.createStatement();
@@ -144,7 +189,7 @@ public class localiteDao {
 			  
 			  
 			if(res.next()) {
-				nb = res.getInt("nbActeurs");
+				nb = res.getInt("nbLocalites");
 			}
 		} catch(Exception e) {
 			System.out.println(e.getMessage());

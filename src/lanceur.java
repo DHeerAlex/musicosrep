@@ -1,5 +1,5 @@
 
-import ihm.*;
+import ihm_d.*;
 import java.sql.SQLException;
 import java.sql.Statement;
 
